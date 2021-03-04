@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  gehenna:
+    build: .
+    container_name: 'gehenna'
+    restart: always
+    ports:
+      - '80:80'
+    depends_on: 
+      - database
+    networks:
+      - ensemble-network
+  database:
+    image: 'mongo'
+    container_name: 'database'
+    env_file: .env
+    restart: always
+    environment: 
+      - MONGO_INITDB_DATABASE=$MONGO_DATABASE
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_ROOT_PASSWORD
+    volumes:
+      - ./config/mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    ports:
+      - '27017:27017'
+    networks:
+      - ensemble-network
+
+networks:
+  ensemble-network:
+    driver: bridge

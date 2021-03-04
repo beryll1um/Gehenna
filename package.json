@@ -1,0 +1,25 @@
+{
+  "name": "gehenna",
+  "version": "1.0.0",
+  "description": "Secure client for transferring messages between users within an unsecured network",
+  
+  "main": "build/index.js",
+  "scripts": {
+    "test": "node .",
+    "start": "PORT=80 node .",
+    "clear": "rm -rf build",
+    "build": "tsc"
+  },
+
+  "_moduleAliases": {
+    "@": "build"
+  },
+
+  "dependencies": {
+    "colors": "^1.4.0",
+    "express": "^4.17.1",
+    "module-alias": "^2.2.2",
+    "mongoose": "5.11.15",
+    "typescript": "^4.2.2"
+  }
+}
